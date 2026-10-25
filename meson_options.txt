@@ -1,0 +1,37 @@
+# ============================================================================
+# MKSTOOR — user-facing build options
+# SPDX-License-Identifier: AGPL-3.0-only
+# ============================================================================
+
+option('target_arch',
+  type: 'combo',
+  choices: ['auto', 'x86_64', 'aarch64'],
+  value: 'auto',
+  description: 'Override the target CPU family (must match the configured/cross toolchain).')
+
+option('enable_rust',
+  type: 'boolean',
+  value: true,
+  description: 'Build the Rust no_std FFI bridge crate (lib/mkstoor-ffi). Disable to produce a pure-C Stage-1 image.')
+
+option('enable_lua',
+  type: 'boolean',
+  value: false,
+  description: 'Vendor and link Lua 5.4 as a Meson subproject for the scripting engine (Stage 3).')
+
+option('log_level',
+  type: 'combo',
+  choices: ['error', 'warn', 'info', 'debug', 'trace'],
+  value: 'info',
+  description: 'Compile-time ceiling for console log verbosity.')
+
+option('secure_boot',
+  type: 'boolean',
+  value: true,
+  description: 'Enable signature-verification and TPM2 measured-boot hooks in the module loader.')
+
+option('efi_dir',
+  type: 'string',
+  value: 'EFI/BOOT',
+  description: 'Installation directory (ESP-relative) for mkstoor.efi.')
+
